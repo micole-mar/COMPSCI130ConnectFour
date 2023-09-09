@@ -15,3 +15,9 @@ Any move by the opponent resulting in a three-in-a-row: Subtracts 100 points.
 Any move by the opponent that leads to a two-in-a-row: Incurs a penalty of 2 points.  
 It's important to note that this scoring mechanism considers the entire game board, encompassing all past occurrences of 2-in-a-row, 3-in-a-row, and 4-in-a-row, rather than focusing solely on the most recent move.  
 
+The Minimax Algorithm Functions:  
+My Minimax algorithm relies on two core functions:
+
+choose_move(self, player): This function serves a dual role: firstly, it triggers the Minimax algorithm, and secondly, it identifies and returns the column of the optimal move to make. This decision is made by evaluating all possible moves up to three turns ahead.
+
+choose_move_for_minimax_points(self, player_to_play, player_to_evaluate, should_maximize, depth): This function embodies the Minimax algorithm's recursive logic. It continually calls itself to explore all potential game states, up to a depth of three moves ahead, and returns the points and corresponding move location for the best possible move each time. To ensure that the board's state remains unchanged during this process, I've introduced an auxiliary function called copy(self) to replicate the board. This way, each recursive move is executed on a copied version of the board, preserving the original state for display purposes without modification.
