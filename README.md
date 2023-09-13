@@ -3,21 +3,31 @@ COMPSCI130 Semester 2 2022 Assignment: Connect 4 Python Game
 
 Connect4 game with implemented Computer AI (implementing minimax algorithm)
 
-To enhance the AI's decision-making capabilities, I devised a scoring framework centered on identifying patterns of 2-in-a-row, 3-in-a-row, and 4-in-a-row moves. This scoring system serves a dual purpose, as it accounts for both the AI's and the opponent's achievements in these patterns.
+To enhance the AI's decision-making capabilities, I devised a scoring framework centered on identifying patterns of 4-in-a-row moves. This scoring system serves a dual purpose, as it accounts for both the AI's and the opponent's achievements in these patterns.
 
-Here's how moves are assigned scores:
+It's important to note that this scoring mechanism considers the entire game board, encompassing all past occurrences of 4-in-a-row, rather than focusing solely on the most recent move.  
 
-Any move that results in a four-in-a-row for the AI: Earns 1000 points.  
-Any move that leads to a three-in-a-row for the AI: Earns 5 points.  
-Any move that establishes a 2-in-a-row for the AI: Earns 2 points.  
-Any move by the opponent that forms a four-in-a-row: Deducts 1000 points.  
-Any move by the opponent resulting in a three-in-a-row: Deducts 100 points.  
-Any move by the opponent that leads to a two-in-a-row: Deducts 2 points.  
-It's important to note that this scoring mechanism considers the entire game board, encompassing all past occurrences of 2-in-a-row, 3-in-a-row, and 4-in-a-row, rather than focusing solely on the most recent move.  
+AI player:
 
-The Minimax Algorithm Functions:  
-My Minimax algorithm relies on two core functions:
+Maximise Points: The AI player aims to maximize its own points. It evaluates the current game board and tries to make moves that result in the AI player earning more points.
 
-choose_move(self, player): This function serves a dual role: firstly, it triggers the Minimax algorithm, and secondly, it identifies and returns the column of the optimal move to make. This decision is made by evaluating all possible moves up to three turns ahead.
+Minimise Opponent's Points: If there are no immediate moves that would increase the AI player's points, the AI player checks if the opponent (Player 1) has any moves that could result in them earning a large number of points. In this case, the AI tries to block the opponent's potential wins.
 
-choose_move_for_minimax_points(self, player_to_play, player_to_evaluate, should_maximize, depth): This function embodies the Minimax algorithm's recursive logic. It continually calls itself to explore all potential game states, up to a depth of three moves ahead, and returns the points and corresponding move location for the best possible move each time. To ensure that the board's state remains unchanged during this process, I've introduced an auxiliary function called copy(self) to replicate the board. This way, each recursive move is executed on a copied version of the board, preserving the original state for display purposes without modification.
+Fallback to Center Columns: If there are no moves that maximize points or block the opponent, the AI player chooses columns that are as close to the center of the board as possible. This is a heuristic to select potentially strategic columns.
+
+Simple Evaluation: The AI player doesn't perform an in-depth evaluation of game states, nor does it consider future moves beyond the current turn. It makes decisions based on the current state of the board and the heuristic rules mentioned above.
+
+Skills:  
+- Object-Oriented Programming (OOP): The code is organized into classes (GameBoard and FourInARow) to encapsulate game logic and behavior, demonstrating an understanding of OOP principles.
+- Game Logic Implementation: The project involves implementing the rules and logic of the Connect Four game, including win conditions, turns, and game state management.
+- User Input Handling: The code captures and validates user input, ensuring that players can interact with the game by choosing columns for their moves.
+- AI Decision-Making: Although it uses a heuristic-based approach rather than a complex AI algorithm, the code demonstrates the implementation of a basic AI opponent that can make decisions based on simple rules.
+- Looping and Control Structures: The game loop controls the flow of the game, allowing players to take turns and checking for game-over conditions.
+- Data Structures: Lists and nested lists are used to represent the game board and manage the state of the game.
+- Conditional Statements: Conditional statements are employed throughout the code for various game logic purposes, including checking for wins, determining AI moves, and validating user input.
+- Error Handling: Basic error handling is implemented to manage potential issues, such as invalid user input or board operations.
+- Lists and Indexing: Lists are used extensively to manage the game board and track the state of each column.
+- Math Operations: Mathematical operations are used to calculate the number of free positions, points, and determine the center of the game board.
+- User Interaction: The code interacts with users by displaying messages, requesting input, and providing feedback on the game's progress.
+- Heuristic-Based Decision-Making: The AI's heuristic-based decision-making demonstrates an understanding of creating basic strategies for game opponents.
+- Print and Display: The code includes a mechanism to print and display the game board, allowing players to visualize the game's state.
